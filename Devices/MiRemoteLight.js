@@ -68,7 +68,7 @@ MiRemoteLightService.prototype.getServices = function () {
                             this.device
                                 .call("miIO.ir_play", { freq: 38400, code: getDataByBrightness(this.brightness) })
                                 .then(() => {
-                                    self.platform.log.debug("[" + this.name + "]Light: Set to " + this.brightness);
+                                    that.platform.log("[" + this.name + "]Light: Set to " + this.brightness);
                                 })
                         }
                         callback(null);
