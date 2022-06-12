@@ -30,6 +30,7 @@ MiRemoteAirConditionerService = function(dThis) {
     this.maxTemperature = dThis.config['MaxTemperature'] || 30,
     this.defaultTemperature = dThis.config['DefaultTemperature'] || 26;
     this.targettem = dThis.config['DefaultTemperature'] || 26;
+    this.defaultMode = dThis.config['DefaultMode'] || 0;
     this.onoffstate = 0;
 }
 
@@ -108,16 +109,10 @@ MiRemoteAirConditionerService.prototype.SendData = function(state,value) {
     if(sstatus == "off"){
         datay = this.data['off'];
     }else if(sstatus == "Auto"){
-        if(this.data['Auto'] != null){
-            datas = this.GetDataString(this.data[sstatus],value);
-            var datay = datas['data'];
-        }else{
-            datay = this.data['off'];
-            state = 0;
-            setTimeout(function() {  
-                this.MiRemoteAirConditionerService.setCharacteristic(Characteristic.CurrentHeatingCoolingState, 0);
-                this.MiRemoteAirConditionerService.setCharacteristic(Characteristic.TargetHeatingCoolingState, 0);
-            }.bind(this), 0.6 * 1000);
+        if (this.defaultMode === 0) {
+            sstatus = "Cool"
+        } else {
+            sstatus = "Heat"
         }
     }else{
         datas = this.GetDataString(this.data[sstatus],value);
