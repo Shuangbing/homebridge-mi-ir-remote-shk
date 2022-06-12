@@ -106,14 +106,13 @@ MiRemoteAirConditionerService.prototype.SendData = function(state,value) {
     var that = this;
     var sstatus = this.getStatusFrCha(state);
     var datas = {"tem" : value};
+    if (this.defaultMode === 0) {
+        sstatus = "Cool"
+    } else {
+        sstatus = "Heat"
+    }
     if(sstatus == "off"){
         datay = this.data['off'];
-    }else if(sstatus == "Auto"){
-        if (this.defaultMode === 0) {
-            sstatus = "Cool"
-        } else {
-            sstatus = "Heat"
-        }
     }else{
         datas = this.GetDataString(this.data[sstatus],value);
         var datay = datas['data'];
