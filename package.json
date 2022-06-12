@@ -1,6 +1,6 @@
 {
   "name": "homebridge-mi-ir-remote-shk",
-  "version": "0.1.2b",
+  "version": "0.1.2c",
   "description": "ChuangMi Remote plugin for homebridge: https://github.com/nfarina/homebridge",
   "license": "GPLV3",
   "keywords": [
